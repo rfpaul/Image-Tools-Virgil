@@ -1,14 +1,35 @@
+"""
+Databending Script for JPEG, JP2, and HEIC files
+
+This script allows you to apply databending to various image file formats,
+including JPEG, JP2, and HEIC. It modifies the image file in-place and provides
+options to flip random bytes, undo changes, and save the modified image to a
+new file. Please note that you may need to adjust the start and end values in
+the databend function to avoid corrupting the file header for different file
+types.
+
+GPL 3.0, (c) 2023 Robert Paul
+Special thanks to @letsglitchit AKA Dawnia Darkstone for inspiring me to
+explore glitch art and for sharing the love, practice, and techniques of glitch
+art with the creative community.`
+
+Large portions generated with GPT-4
+"""
+
 import os
 import random
 
+# Function to read image data from a file
 def read_image_file(filepath):
     with open(filepath, "rb") as f:
         return bytearray(f.read())
 
+# Function to write image data to a file
 def write_image_file(filepath, data):
     with open(filepath, "wb") as f:
         f.write(data)
 
+# Function to apply databending to the image data
 def databend(image_data, databend_steps=1):
     changes = []
 
@@ -26,11 +47,13 @@ def databend(image_data, databend_steps=1):
 
     return image_data, changes
 
+# Function to revert the databending changes
 def undo_databend(image_data, changes):
     for index, old_value in reversed(changes):
         image_data[index] = old_value
     return image_data
 
+# Main function that handles user input and file operations
 def main():
     filepath = "/path/to/your/image/file"
     if not os.path.exists(filepath):
