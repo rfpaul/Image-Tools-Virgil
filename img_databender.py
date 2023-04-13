@@ -11,13 +11,24 @@ types.
 GPL 3.0, (c) 2023 Robert Paul
 Special thanks to @letsglitchit AKA Dawnia Darkstone for inspiring me to
 explore glitch art and for sharing the love, practice, and techniques of glitch
-art with the creative community.`
+art with the creative community.
 
 Large portions generated with GPT-4
+"""
+"""
+Databending Script for JPEG, JP2, and HEIC files
+
+This script allows you to apply databending to various image file formats,
+including JPEG, JP2, and HEIC. It modifies the image file in-place and provides
+options to flip random bytes, undo changes, and save the modified image to a
+new file. Please note that you may need to adjust the start and end values in
+the databend function to avoid corrupting the file header for different file
+types.
 """
 
 import os
 import random
+import argparse
 
 # Function to read image data from a file
 def read_image_file(filepath):
@@ -54,8 +65,7 @@ def undo_databend(image_data, changes):
     return image_data
 
 # Main function that handles user input and file operations
-def main():
-    filepath = "/path/to/your/image/file"
+def main(filepath):
     if not os.path.exists(filepath):
         print("File not found")
         return
@@ -96,4 +106,8 @@ def main():
             print("Invalid action")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("filepath", nargs="?", default="/image/filepath/here.heic", help="Path to the image file")
+    args = parser.parse_args()
+
+    main(args.filepath)
