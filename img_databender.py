@@ -15,16 +15,6 @@ art with the creative community.
 
 Large portions generated with GPT-4
 """
-"""
-Databending Script for JPEG, JP2, and HEIC files
-
-This script allows you to apply databending to various image file formats,
-including JPEG, JP2, and HEIC. It modifies the image file in-place and provides
-options to flip random bytes, undo changes, and save the modified image to a
-new file. Please note that you may need to adjust the start and end values in
-the databend function to avoid corrupting the file header for different file
-types.
-"""
 
 import os
 import random
